@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  # 1. PostgreSQL
+
+  db:
+    image: postgres:13
+    container_name: warehouse_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: rahasia123
+      POSTGRES_DB: finance_db
+    ports:
+      - "5435:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: always
+
+  # 2. Metabase
+  metabase:
+    image: metabase/metabase:latest
+    container_name: dashboard_bi
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: finance_db
+      MB_DB_PORT: 5432
+      MB_DB_USER: admin
+      MB_DB_PASS: rahasia123
+      MB_DB_HOST: db
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  pg_data:
