@@ -30,7 +30,7 @@ This project handles data extraction, transformation, storage, and visualization
 
 ## Dashboard Preview
 
-![Trend Stock Prices](Trend Stock Prices.png)
+![Trend Stock Prices](foto_bi.png)
 
 ---
 
